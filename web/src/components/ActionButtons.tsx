@@ -29,7 +29,7 @@ export default function ActionButtons({ email, onAction }: Props) {
         payload: {},
       });
       if (error) throw error;
-      setDone((prev) => new Set([...prev, action]));
+      setDone((prev) => { const s = new Set(prev); s.add(action); return s; });
       onAction?.(email.id, action);
     } catch (err) {
       console.error("Failed to queue action:", err);
